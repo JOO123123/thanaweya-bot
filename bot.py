@@ -46,23 +46,22 @@ random.seed(day_seed)
 selected_intro = random.choice(intros)
 selected_middle = random.choice(middles)
 
-# لينكات Giphy الأصلية اللي ديسكورد بيعرف يعملها Embed لوحده تلقائياً
+# روابط صور متحركة مباشرة بصيغة .gif بتظهر فوراً كصورة في ديسكورد
 gifs = [
-    "https://giphy.com/gifs/xT39CVxQ2yz9gEdLyM",
-    "https://giphy.com/gifs/26ufouiy09sRIZSCY",
-    "https://giphy.com/gifs/3o7TKSjRrfIPjeiOkM",
-    "https://giphy.com/gifs/l0HlRnAWXxn0MhOBK",
-    "https://giphy.com/gifs/26ufdipQqU2lhNA4g",
+    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZkdnA2YWV3OHFzZDV4aTZidXZ3MndwbjQ0N20ybHZqcThsdzlyZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKSjRrfIPjeiOkM/giphy.gif",
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHJqanl6amF2ZXJtMGprNWN5NGV6ZXU2cG9vdmZ3d2d2cWl3OWl4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26ufdipQqU2lhNA4g/giphy.gif",
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNndmbXlnZm91N2Rnb3MyMHRhbXJ4d2J5OXB3dXg4Ymd0Z2N6MWRlayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlRnAWXxn0MhOBK/giphy.gif",
 ]
 
 selected_gif = random.choice(gifs)
 
+# الطريقة دي بتضمن إن الصورة تظهر كـ Embed حقيقي جوه الرسالة من غير لينكات نصية
 payload = {
     "content": (
         f"🚨 **رسالة اليوم من محمد عبد اللطيف** 🚨\n\n{selected_intro}"
-        f" {selected_middle}\n\n{selected_gif}\n\n*هذا الحساب لا يمط للحقيقة"
-        " بصلة*"
-    )
+        f" {selected_middle}\n\n*هذا الحساب لا يمط للحقيقة بصلة*"
+    ),
+    "embeds": [{"image": {"url": selected_gif}}],
 }
 
 webhook_url = os.environ.get("DISCORD_WEBHOOK_URL")
